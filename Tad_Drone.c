@@ -9,22 +9,10 @@ void InicializaDrone(Drone *drone, int peso_max){
     CrialistaVazia(&drone->entregasDoDia);
 }
 
-void CarregarPacote(Drone *drone, int peso_max, int peso_carregado, Galpao* galpao){
-    apontador aux = galpao->pacotesDia.primeiro;
 
-    if(&galpao->pacotesDia.primeiro == NULL){
-
-        printf("A lista esta vazia");
-        return;
-    }else{
-        while(aux != NULL){
-            if(drone->peso_carregado + &galpao->pacotesDia.primeiro->pacote.peso <= drone->peso_max){
-                InserePacoteFinal(&drone->entregasDoDia, aux);
-                aux = aux->prox;
-                drone->peso_carregado += galpao->pacotesDia.primeiro->pacote.peso;
-                carregar_drone(galpao);
-            }
-        }
+void CarregarPacote(Drone* drone, dadospacote* pacote){
+    if(drone->peso_carregado + pacote->peso <= drone->peso_max){
+        InserePacoteFinal(&(drone->entregasDoDia), pacote);
+        drone->peso_carregado += pacote->peso;
     }
-
 }
