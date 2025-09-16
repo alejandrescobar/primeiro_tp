@@ -1,9 +1,6 @@
-<<<<<<< HEAD
+#ifndef DADOS_PACOTES_H
+#define DADOS_PACOTES_H
 
-=======
-#ifndef DADOS_PACOTE_H
-#define DADOS_PACOTE_H
->>>>>>> 2f6a8e694acd382df9d89ece63c62dc3ecf2b53a
 typedef struct 
 {
 
@@ -14,8 +11,6 @@ typedef struct
 
     
 }dadospacote;
-
-
 
 
 

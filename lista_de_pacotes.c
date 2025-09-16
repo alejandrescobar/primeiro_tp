@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "lista_de_pacotes.h"
 
-<<<<<<< HEAD
 void CrialistaVazia(listaPacotes* lista){
     lista->primeiro=(apontador)malloc(sizeof(Celula));
     lista->ultimo = lista->primeiro;
@@ -28,4 +27,5 @@ int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
 }
 
 void ImprimeLista(listaPacotes lista){
+}
 
