@@ -22,6 +22,7 @@ void CarregarPacote(Drone *drone, int peso_max, int peso_carregado, Galpao* galp
                 InserePacoteFinal(&drone->entregasDoDia, aux);
                 aux = aux->prox;
                 drone->peso_carregado += galpao->pacotesDia.primeiro->pacote.peso;
+                carregar_drone(galpao);
             }
         }
     }

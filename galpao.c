@@ -20,6 +20,11 @@ void receber_pacotes(Galpao* galpao, listaPacotes* lista){
 
 }
 
+
+void carregar_drone(Galpao* galpao){
+    RemovePacoteInicio(galpao, galpao->pacotesDia.primeiro->prox);
+}
+
 void imprimir_pacotesDoDia(Galpao* galpao){
     ImprimeLista(&galpao);
 }
