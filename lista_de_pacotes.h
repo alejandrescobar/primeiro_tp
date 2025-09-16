@@ -1,4 +1,3 @@
-
 #ifndef LISTA_PACOTES_H
 #define LISTA_PACOTES_H
 #include "dados_pacote.h"
@@ -21,5 +20,6 @@ void InserePacoteFinal(listaPacotes* lista, dadospacote* pacote);
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote);
 void ImprimeLista(listaPacotes lista);
 
+void carregar_arquivo(listaPacotes* lista,const char *nome_arquivo );
 
 #endif 
