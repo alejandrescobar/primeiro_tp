@@ -1,18 +1,19 @@
 #ifndef TAD_DRONE_H
 #define TAD_DRONE_H
 #include "lista_de_pacotes.h"
-#define PESOMAX 15000
+#include "galpao.h"
 
 typedef struct {
-    float peso_max = PESOMAX;
-    float peso_carregado;
-    float distanciaTotal_percorrida;
-    listaPacotes* listaDePacotes;
+    int peso_max;
+    int peso_carregado;
+    int distanciaTotal_percorrida;
+    listaPacotes* entregasDoDia;
 }Drone;
 
 
-void InicializaDrone(Drone* drone, float PesoMAX);
-void CarregarPacote();
+
+void InicializaDrone(Drone* drone, int peso_max);
+void CarregarPacote(Drone *drone, int peso_max, int peso_carregado, Galpao* galpao);
 
 
 

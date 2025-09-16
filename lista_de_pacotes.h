@@ -19,7 +19,7 @@ typedef struct {
 void CrialistaVazia(listaPacotes* lista);
 void InserePacoteFinal(listaPacotes* lista, dadospacote* pacote);
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote);
-void ImprimeLista(listaPacotes lista);
+void ImprimeLista(listaPacotes *lista);
 
 
 #endif 

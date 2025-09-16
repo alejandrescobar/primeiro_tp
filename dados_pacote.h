@@ -3,6 +3,7 @@
 
 typedef struct 
 {
+    
 
     char conteudo [50];
     char destinatario [50];
