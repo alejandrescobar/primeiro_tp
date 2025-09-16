@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "dados_pacote.h"
-#include <string.h>
+
 
 void inicializa_pacote(dadospacote *dados,char *conteudo, char *destinatario,float peso, float distancia)
 {

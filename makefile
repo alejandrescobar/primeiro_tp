@@ -1,19 +1,14 @@
-# Define os arquivos fonte e de objeto
-SOURCES = main.c dados_pacote.c lista_de_pacotes.c  # <--- Adicione o novo arquivo aqui!
-OBJECTS = $(SOURCES:.c=.o)
-EXECUTABLE = programa
+CC = gcc
+CFLAGS = -Wall -g
 
-# Regra principal para construir o programa
-all: $(EXECUTABLE)
+all: programa
 
-# Linkar os arquivos objeto para criar o executável
-$(EXECUTABLE): $(OBJECTS)
-	gcc -Wall -g -o $@ $(OBJECTS)
+programa: main.o
+	$(CC) $(CFLAGS) -o programa main.o
 
-# Compilar cada arquivo .c em seu respectivo .o
-%.o: %.c
-	gcc -Wall -g -c $<
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c
 
-# Limpar arquivos gerados
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE)
+	rm -f *.o programa
+

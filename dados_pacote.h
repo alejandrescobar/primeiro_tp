@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 
-=======
-#ifndef DADOS_PACOTE_H
-#define DADOS_PACOTE_H
->>>>>>> 2f6a8e694acd382df9d89ece63c62dc3ecf2b53a
 typedef struct 
 {
 
@@ -15,7 +10,12 @@ typedef struct
     
 }dadospacote;
 
+typedef struct 
+{
+    int primeiro;
+    int ultimo;
 
+}lista_pacote;
 
 
 
@@ -32,5 +32,3 @@ char *get_destinatario(dadospacote *dados);
 float get_peso(dadospacote *dados);
 float get_distancia(dadospacote *dados);
 
-
-#endif
