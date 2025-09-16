@@ -20,6 +20,6 @@ void InserePacoteFinal(listaPacotes* lista, dadospacote* pacote);
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote);
 void ImprimeLista(listaPacotes *lista);
 
-void carregar_arquivo(listaPacotes* lista,const char *nome_arquivo );
+void carregar_arquivos(listaPacotes* lista,const char *nome_arquivo );
 
 #endif 

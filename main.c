@@ -1,17 +1,19 @@
+#include <stdio.h>
 #include "lista_de_pacotes.h"
 #include "dados_pacote.h"
-#include <stdio.h>
-#include <stdlib.h>
+#define max_linha 256
+int main()
+{
+    
+listaPacotes lista ;
+CrialistaVazia(&lista);
 
-int main(){
 
-    dadospacote ximenespacotudo;
-    inicializa_pacote(&ximenespacotudo, "remedio", "GuelaDoJhon", 1.8, 2);
-    listaPacotes maiorespacotudos;
+carregar_arquivos(&lista,"teste1.txt");
+ImprimeLista(&lista);
 
-    CrialistaVazia(&maiorespacotudos);
-    InserePacoteFinal(&maiorespacotudos, &ximenespacotudo);
-    ImprimeLista(&maiorespacotudos);
+printf("olá mundo");
 
-    return 0;
+
+ return 1 ;
 }

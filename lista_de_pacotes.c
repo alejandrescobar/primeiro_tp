@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista_de_pacotes.h"
+#include "string.h" 
 #define MAX_linhas 256
 
 
@@ -10,14 +11,12 @@ void CrialistaVazia(listaPacotes* lista){
     lista->primeiro->prox = NULL;
 }
 
-int cont;
 
 void InserePacoteFinal(listaPacotes* lista, dadospacote *pacote ){
     lista->ultimo->prox = (apontador)malloc(sizeof(Celula));
     lista->ultimo= lista->ultimo->prox;
     lista->ultimo->pacote = *pacote;
     lista->ultimo->prox= NULL;
-    cont++;
 }
 
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
@@ -35,10 +34,11 @@ void ImprimeLista(listaPacotes *lista){
     apontador pAux;
     pAux = lista->primeiro->prox;
     while(pAux != NULL){
-        printf("%s\n", pAux->pacote.conteudo);
-        printf("%.2f\n", pAux->pacote.peso);
-        printf("%s\n", pAux->pacote.destinatario);
-        printf("%.2f\n", pAux->pacote.distancia);
+        printf("Conteudo: %s\n", pAux->pacote.conteudo);
+        printf("Peso: %.2f\n", pAux->pacote.peso);
+        printf("Destinatario: %s\n", pAux->pacote.destinatario);
+        printf("Distancia: %f\n", pAux->pacote.distancia);
+        printf("\n");
         pAux = pAux->prox;
     }
 
@@ -81,16 +81,16 @@ void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo)
 
     if (strlen(linha)>0){
 
-        char *conteudo_str = strtok(linha, " ");
-        char *destinatario_str = strtok(NULL," ");
-        char *peso_str=strtok(NULL," ");
-        char *distancia_str = strtok(NULL," ");
+        conteudo_str = strtok(linha, " ");
+        destinatario_str = strtok(NULL," ");
+        peso_str = strtok(NULL," ");
+        distancia_str = strtok(NULL," ");
 // estamos pegando cada segmento de linha e separando em cada variavel , usando o espaço como requisito de quebra 
         float peso_convertido = atof(peso_str);
         float distancia_convertida = atof(distancia_str);//convertendo de char para float 
 
-        strncpy(novo_pacote.conteudo ,conteudo_str,sizeof(novo_pacote.conteudo));//strncpy precisa de 3 parametros destino, conteudo,e o tamanho
-        strncpy(novo_pacote.destinatario,destinatario_str,sizeof(novo_pacote.destinatario));
+        strncpy(novo_pacote.conteudo ,conteudo_str,sizeof(novo_pacote.conteudo)-1);//strncpy precisa de 3 parametros destino, conteudo,e o tamanho
+        strncpy(novo_pacote.destinatario,destinatario_str,sizeof(novo_pacote.destinatario)-1);
         novo_pacote.peso = peso_convertido;
         novo_pacote.distancia = distancia_convertida;     //estamos passando o valor direto , se fosse ponteiro teriamos que usar as setinhas             
         InserePacoteFinal(lista,&novo_pacote);
@@ -99,7 +99,7 @@ void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo)
 
     
                         }
-    }
+                    }
 
-fclose(arquivo);
+    fclose(arquivo);
 }
