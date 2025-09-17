@@ -24,10 +24,11 @@ Galpao gal;
 inicializar_galpao(&gal);
 
 receber_pacotes(&gal, &lista);
+printf("%.2f\n", gal.pacotesDia.primeiro->prox->pacote.distancia);;
 
 Drone dronadas;
 InicializaDrone(&dronadas, *pesomax);
-imprimeDrone(&dronadas);
+
 
 
  return 1 ;

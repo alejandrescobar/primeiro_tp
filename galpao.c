@@ -7,7 +7,7 @@ void inicializar_galpao(Galpao* galpao){
 }
 
 void receber_pacotes(Galpao* galpao, listaPacotes* lista){
-    apontador aux = lista->primeiro;
+    apontador aux = lista->primeiro->prox;
     if(lista->primeiro == NULL){
         printf("A lista está vazia");
         return;
