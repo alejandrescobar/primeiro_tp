@@ -10,7 +10,8 @@ CFLAGS = -Wall -g
 EXECUTABLE = programa
 
 # Define os arquivos de código-fonte
-SOURCES = main.c dados_pacote.c lista_de_pacotes.c galpao.c
+# Adicionado o Tad_Drone.c à lista
+SOURCES = main.c dados_pacote.c lista_de_pacotes.c galpao.c Tad_Drone.c
 
 # Cria automaticamente os nomes dos arquivos objeto (.o) a partir dos arquivos .c
 OBJECTS = $(SOURCES:.c=.o)

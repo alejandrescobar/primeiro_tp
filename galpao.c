@@ -13,7 +13,7 @@ void receber_pacotes(Galpao* galpao, listaPacotes* lista){
         return;
     } else{
         while(aux != NULL){
-            InserePacoteFinal(&galpao, aux);
+            InserePacoteFinal(&galpao->pacotesDia, &aux->pacote);
             aux = aux->prox;
         }
     }
@@ -30,5 +30,5 @@ dadospacote* carregar_drone(Galpao* galpao){
 }
 
 void imprimir_pacotesDoDia(Galpao* galpao){
-    ImprimeLista(&galpao);
+    ImprimeLista(&galpao->pacotesDia);
 }

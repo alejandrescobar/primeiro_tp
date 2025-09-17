@@ -5,6 +5,7 @@
 #define MAX_linhas 256
 
 
+
 void CrialistaVazia(listaPacotes* lista){
     lista->primeiro=(apontador)malloc(sizeof(Celula));
     lista->ultimo = lista->primeiro;
@@ -44,7 +45,7 @@ void ImprimeLista(listaPacotes *lista){
 
 }
 
-void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo)
+void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo, int *pmax)
 {   
     float peso_maximo_drone;
     int numero_de_pacotes;
@@ -62,7 +63,7 @@ void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo)
         fgets(linha,MAX_linhas,arquivo);//armazena o primeiro valor da linha(pesomaximodrone)
         linha[strcspn(linha, "\n")] = 0;//tira a quebra de linha
         peso_maximo_drone =atof(linha);
-
+        *pmax = peso_maximo_drone;
         fgets(linha,MAX_linhas,arquivo);//le a segunda linha com numero de pacotes
         linha[strcspn(linha, "\n")] = 0;
         numero_de_pacotes=atoi(linha);// atof convert para o tipo int o conteudo das linhas 
@@ -94,7 +95,7 @@ void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo)
         novo_pacote.peso = peso_convertido;
         novo_pacote.distancia = distancia_convertida;     //estamos passando o valor direto , se fosse ponteiro teriamos que usar as setinhas             
         InserePacoteFinal(lista,&novo_pacote);
-
+        
         
 
     
