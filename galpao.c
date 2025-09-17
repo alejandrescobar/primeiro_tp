@@ -21,8 +21,12 @@ void receber_pacotes(Galpao* galpao, listaPacotes* lista){
 }
 
 
-void carregar_drone(Galpao* galpao){
-    RemovePacoteInicio(galpao, galpao->pacotesDia.primeiro->prox);
+dadospacote* carregar_drone(Galpao* galpao){
+
+    dadospacote* pacoteRetirado = (dadospacote*) malloc(sizeof(dadospacote));
+
+    RemovePacoteInicio(&galpao->pacotesDia, pacoteRetirado);
+    return pacoteRetirado;
 }
 
 void imprimir_pacotesDoDia(Galpao* galpao){

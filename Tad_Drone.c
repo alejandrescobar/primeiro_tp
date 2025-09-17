@@ -16,3 +16,8 @@ void CarregarPacote(Drone* drone, dadospacote* pacote){
         drone->peso_carregado += pacote->peso;
     }
 }
+
+void realizarEntrega(Drone *drone){
+    dadospacote pacoteRemovido;
+    RemovePacoteInicio(&(drone->entregasDoDia), &pacoteRemovido);
+}                                                                                                                                           
