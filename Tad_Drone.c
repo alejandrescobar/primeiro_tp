@@ -20,4 +20,10 @@ void CarregarPacote(Drone* drone, dadospacote* pacote){
 void realizarEntrega(Drone *drone){
     dadospacote pacoteRemovido;
     RemovePacoteInicio(&(drone->entregasDoDia), &pacoteRemovido);
-}                                                                                                                                           
+    printf("Entrega: \"%s\" para \"%s\"\n", pacoteRemovido.conteudo, pacoteRemovido.destinatario);
+
+}         
+
+void imprimeDrone(Drone* drone){
+    ImprimeLista(&(drone->entregasDoDia));
+}
