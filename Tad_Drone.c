@@ -25,6 +25,5 @@ void realizarEntrega(Drone *drone){
 }         
 
 void imprimeDrone(Drone* drone){
-    printf("%d", drone->peso_max);
     ImprimeLista((drone->entregasDoDia));
 }
