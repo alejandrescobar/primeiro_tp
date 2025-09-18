@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: build all",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/main.c",
+                "${workspaceFolder}/dados_pacote.c",
+                "${workspaceFolder}/galpao.c",
+                "${workspaceFolder}/lista_de_pacotes.c",
+                "${workspaceFolder}/Tad_Drone.c",
+                "-o",
+                "${workspaceFolder}/programa"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compila todos os arquivos .c do projeto."
+        }
+    ]
+}

@@ -21,7 +21,8 @@ void InserePacoteFinal(listaPacotes* lista, dadospacote *pacote ){
 }
 
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
-    if (lista->primeiro==lista->ultimo){
+    if (lista->primeiro->prox == NULL){
+        printf("ERRO LISTA VAZIA");
         return 0;
     }
     Celula* aux=lista->primeiro->prox;

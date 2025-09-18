@@ -23,6 +23,10 @@ void receber_pacotes(Galpao* galpao, listaPacotes* lista){
 
 dadospacote* carregar_drone(Galpao* galpao){
 
+    if(galpao->pacotesDia.primeiro->prox == NULL){
+        return NULL;
+    }
+
     dadospacote* pacoteRetirado = (dadospacote*) malloc(sizeof(dadospacote));
 
     RemovePacoteInicio(&galpao->pacotesDia, pacoteRetirado);

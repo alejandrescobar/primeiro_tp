@@ -11,17 +11,16 @@ void InicializaDrone(Drone *drone, int peso_max){
 
 
 void CarregarPacote(Drone* drone, dadospacote* pacote){
-    if(drone->peso_carregado + pacote->peso <= drone->peso_max){
         InserePacoteFinal((drone->entregasDoDia), pacote);
         drone->peso_carregado += pacote->peso;
-    }
+        drone->total_pacotes++;
+    
 }
 
 void realizarEntrega(Drone *drone){
     dadospacote pacoteRemovido;
     RemovePacoteInicio((drone->entregasDoDia), &pacoteRemovido);
     printf("Entrega: \"%s\" para \"%s\"\n", pacoteRemovido.conteudo, pacoteRemovido.destinatario);
-
 }         
 
 void imprimeDrone(Drone* drone){

@@ -4,6 +4,7 @@
 #include "galpao.h"
 
 typedef struct {
+    int total_pacotes;
     int peso_max;
     int peso_carregado;
     int distanciaTotal_percorrida;

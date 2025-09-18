@@ -5,13 +5,44 @@
 #define max_linha 256
 #include "galpao.h"
 #include "Tad_Drone.h"
+#include <math.h>
+
+
+int calcularDistanciaViagem(Drone *drone){
+
+    int dist_viagem = 0;
+    int ultima_dis = 0;
+
+    apontador Aux = drone->entregasDoDia->primeiro->prox;
+    while (Aux != NULL) {
+            dist_viagem += fabs(Aux->pacote.distancia - ultima_dis);
+            ultima_dis = Aux->pacote.distancia;
+            Aux = Aux->prox;
+    }
+    dist_viagem += ultima_dis;
+    return dist_viagem;
+    
+}
+
+
+void Rota(Drone* drone){
+    while(drone->entregasDoDia->primeiro->prox != NULL){
+        realizarEntrega(drone);
+    }
+    drone->total_pacotes = 0;
+    drone->peso_carregado = 0;
+    
+}
+
+    
+
+
 
 int main()
 {
 
+int VG = 0;
 
-    
-    
 listaPacotes lista;
 CrialistaVazia(&lista);
 
@@ -24,10 +55,38 @@ Galpao gal;
 inicializar_galpao(&gal);
 
 receber_pacotes(&gal, &lista);
-printf("%.2f\n", gal.pacotesDia.primeiro->prox->pacote.distancia);;
 
 Drone dronadas;
 InicializaDrone(&dronadas, *pesomax);
+
+
+
+
+while(gal.pacotesDia.primeiro->prox != NULL){
+    while(gal.pacotesDia.primeiro->prox != NULL && (gal.pacotesDia.primeiro->prox->pacote.peso + dronadas.peso_carregado <= dronadas.peso_max)){
+        printf("PESO ATUAL: %.2f\n", gal.pacotesDia.primeiro->prox->pacote.peso);
+        dadospacote *a = carregar_drone(&gal);
+        CarregarPacote(&dronadas, a);
+        printf("-------\n");
+        imprimeDrone(&dronadas);
+        printf("-------\n");
+    }
+
+    VG++;
+    printf("Viagem SECOND: %d\n", VG);
+    Rota(&dronadas);
+
+    printf("PESO DEPOIS DA ROTA() %d\n", dronadas.peso_carregado);
+    }
+
+
+
+
+
+
+
+
+
 
 
 
