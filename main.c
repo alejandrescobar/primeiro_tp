@@ -26,9 +26,11 @@ int calcularDistanciaViagem(Drone *drone){
 
 
 void Rota(Drone* drone){
+    int DistanciaViagem = calcularDistanciaViagem(drone);
     while(drone->entregasDoDia->primeiro->prox != NULL){
         realizarEntrega(drone);
     }
+    printf("Distancia total: %dkm\n", DistanciaViagem);
     //CrialistaVazia(drone->entregasDoDia); 
     drone->total_pacotes = 0;
     drone->peso_carregado = 0;
@@ -41,7 +43,7 @@ void Rota(Drone* drone){
 
 int main()
 {
-
+int DistanciaTotal = 0;
 int VG = 0;
 
 listaPacotes lista;
@@ -60,7 +62,8 @@ receber_pacotes(&gal, &lista);
 Drone dronadas;
 InicializaDrone(&dronadas, *pesomax);
 
-
+listaPacotes pacotesRemovidos;
+CrialistaVazia(&pacotesRemovidos);
 
 
 while(gal.pacotesDia.primeiro->prox != NULL){
@@ -69,21 +72,45 @@ while(gal.pacotesDia.primeiro->prox != NULL){
         CarregarPacote(&dronadas, a);
     }
 
-    VG++;
-    printf("Viagem : %d\n", VG);
-    Rota(&dronadas);
+
+
+    if(dronadas.entregasDoDia->primeiro->prox == NULL){
+
+    if(gal.pacotesDia.primeiro->prox == NULL){
+        continue;
+    }else{
+        dadospacote* pacoteRetirado = (dadospacote*) malloc(sizeof(dadospacote));
+        RemovePacoteInicio(&gal.pacotesDia, pacoteRetirado);
+
+        InserePacoteFinal(&pacotesRemovidos, pacoteRetirado);
+
+        free(pacoteRetirado);
+    }
+        
+        dronadas.peso_carregado = 0;
+        continue;
     }
 
+    VG++;
+    DistanciaTotal += calcularDistanciaViagem(&dronadas);
+    printf("\nViagem : %d\n", VG);
+    Rota(&dronadas);
+    }
+printf("\nTotal de Quilômetros Percorridos no Dia: %dkm\n", DistanciaTotal);
 
 
+if(pacotesRemovidos.primeiro->prox != NULL){
+    printf("\n---------------------------\n \n");
+    printf("\033[1;31mOs seguintes pacotes foram devolvidos devido ao\npeso exceder o peso suportado pelo drone\033[0m\n \n");
+    apontador AuxRemovidos = pacotesRemovidos.primeiro->prox;
+    while(AuxRemovidos != NULL){
+    printf("O pacote de %s\n", AuxRemovidos->pacote.destinatario);
+    AuxRemovidos = AuxRemovidos->prox;
+    free(AuxRemovidos);
+}
+}
 
 
-
-
-
-
-
-
-
+free(pesomax);
  return 1 ;
 }
