@@ -29,6 +29,7 @@ void Rota(Drone* drone){
     while(drone->entregasDoDia->primeiro->prox != NULL){
         realizarEntrega(drone);
     }
+    //CrialistaVazia(drone->entregasDoDia); 
     drone->total_pacotes = 0;
     drone->peso_carregado = 0;
     
@@ -47,7 +48,7 @@ listaPacotes lista;
 CrialistaVazia(&lista);
 
 int *pesomax = (int*) malloc(sizeof(int));
-carregar_arquivos(&lista,"teste1.txt", pesomax);
+carregar_arquivos(&lista,"teste2.txt", pesomax);
 
 
 Galpao gal;
@@ -64,19 +65,13 @@ InicializaDrone(&dronadas, *pesomax);
 
 while(gal.pacotesDia.primeiro->prox != NULL){
     while(gal.pacotesDia.primeiro->prox != NULL && (gal.pacotesDia.primeiro->prox->pacote.peso + dronadas.peso_carregado <= dronadas.peso_max)){
-        printf("PESO ATUAL: %.2f\n", gal.pacotesDia.primeiro->prox->pacote.peso);
         dadospacote *a = carregar_drone(&gal);
         CarregarPacote(&dronadas, a);
-        printf("-------\n");
-        imprimeDrone(&dronadas);
-        printf("-------\n");
     }
 
     VG++;
-    printf("Viagem SECOND: %d\n", VG);
+    printf("Viagem : %d\n", VG);
     Rota(&dronadas);
-
-    printf("PESO DEPOIS DA ROTA() %d\n", dronadas.peso_carregado);
     }
 
 

@@ -28,6 +28,11 @@ int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
     Celula* aux=lista->primeiro->prox;
     *pacote= aux->pacote;
     lista->primeiro->prox=aux->prox;
+
+    if(lista->primeiro->prox == NULL){
+        lista->ultimo = lista->primeiro;
+    }
+
     free(aux);
     return 1; 
 }
