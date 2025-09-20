@@ -6,34 +6,34 @@
 
 
 
-void CrialistaVazia(listaPacotes* lista){
-    lista->primeiro=(apontador)malloc(sizeof(Celula));
-    lista->ultimo = lista->primeiro;
-    lista->primeiro->prox = NULL;
+void CrialistaVazia(listaPacotes* lista){ //recebe um ponteiro para lista para manipular os valores internos
+    lista->primeiro=(apontador)malloc(sizeof(Celula)); // aloca a memoria para a primeira celula (cabeca)
+    lista->ultimo = lista->primeiro; // agora o ultimo tem o valor da alocação da primeira 
+    lista->primeiro->prox = NULL; // aqui o parametro que nos alocamos ou seja o conteudo do primeiro recebe um valor do tipo delula contendo um ponteiro para a proxima celula , e estamos falando que falor que ele aponta é null 
 }       
 
 
 void InserePacoteFinal(listaPacotes* lista, dadospacote *pacote ){
-    lista->ultimo->prox = (apontador)malloc(sizeof(Celula));
-    lista->ultimo= lista->ultimo->prox;
-    lista->ultimo->pacote = *pacote;
+    lista->ultimo->prox = (apontador)malloc(sizeof(Celula)); // agora alocamos espaço para o ultimo prox tornando um celula
+    lista->ultimo= lista->ultimo->prox;// o ultimo deixa de apontar para a cabeca , e comeca apontar para esse ultimo espaço alocado 
+    lista->ultimo->pacote = *pacote; //coloca no valor do pacote da celula criada o conteudo passado no parametro 
     lista->ultimo->prox= NULL;
 }
 
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
-    if (lista->primeiro->prox == NULL){
+    if (lista->primeiro->prox == NULL){ // aqui nos fazemos a verificação para ver se a lista esta ou nao vazia
         printf("ERRO LISTA VAZIA");
         return 0;
     }
-    Celula* aux=lista->primeiro->prox;
-    *pacote= aux->pacote;
-    lista->primeiro->prox=aux->prox;
+    Celula* aux=lista->primeiro->prox;//criamos uma auxiliar para armazenar onde a cabeca esta apontando 
+    *pacote= aux->pacote;//copia dos dados do pacote para a auxiliar 
+    lista->primeiro->prox=aux->prox;//ajustando o primeiro para pular para o proximo apontando para o porximo do que a cabeca apontava 
 
     if(lista->primeiro->prox == NULL){
-        lista->ultimo = lista->primeiro;
+        lista->ultimo = lista->primeiro;//aqui nos garantimos que se a cabeca aponta para nulo , ou seja temos uma celula , o ultimo vai apontar para o primeiro (zerando a lista)
     }
 
-    free(aux);
+    free(aux);// liberamos a memoria que estava acumulando o valor da antiga celula 
     return 1; 
 }
 
