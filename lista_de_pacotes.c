@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "lista_de_pacotes.h"
 #include "string.h" 
-#define MAX_linhas 256
+
 
 
 
@@ -38,26 +38,26 @@ int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote){
 }
 
 void ImprimeLista(listaPacotes *lista){
-    apontador pAux;
-    pAux = lista->primeiro->prox;
-    while(pAux != NULL){
+    apontador pAux;//criamos um apontador
+    pAux = lista->primeiro->prox; //o apontador ta recebendo a primeira celula que a cabeca esta apontando 
+    while(pAux != NULL){//aqui nos estamos fazendo a verificação se o conteudo dela é nulo se for ele nao entra no laço e a lista chegou ao fim 
         printf("Conteudo: %s\n", pAux->pacote.conteudo);
         printf("Peso: %.2f\n", pAux->pacote.peso);
         printf("Destinatario: %s\n", pAux->pacote.destinatario);
         printf("Distancia: %f\n", pAux->pacote.distancia);
         printf("\n");
-        pAux = pAux->prox;
+        pAux = pAux->prox;// fazemos o apontador ir para a proxima celula
     }
 
 }
 
-void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo, float *pmax){   
-   FILE *arquivo = fopen(nome_do_arquivo, "r");
-int numPacotes;
-fscanf(arquivo, "%f", pmax);
-fscanf(arquivo, "%d", &numPacotes);
+void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo, float *pmax){   //os parametros vai receber um pontrito da lista , o nome do arquivo , em formato de ponteiro para podermos acessar , e um outro para armazenar o peso maximo 
+   FILE *arquivo = fopen(nome_do_arquivo, "r");// estrutura padrão para ler arquivo apenas ler 
+int numPacotes;// declaramos uma variavel para armazenar no numero de pacotes para ser base posteriormente no nosso laço de repetição 
+fscanf(arquivo, "%f", pmax);// armazenamos o conteudo da primeira linha dentro da variavel pmax
+fscanf(arquivo, "%d", &numPacotes);// armazenamos o valor da segunda linha para num de pacotes
 
-for (int i = 0; i < numPacotes; i++) {
+for (int i = 0; i < numPacotes; i++) {// laço de repetição para armazenar a quantidade de pacotes em cada dado respectivo no pacote 
     dadospacote pacote;
     fscanf(arquivo, "%s %s %f %f",
           pacote.conteudo,
@@ -65,7 +65,7 @@ for (int i = 0; i < numPacotes; i++) {
           &pacote.distancia,
           &pacote.peso);
 
-InserePacoteFinal(lista,&pacote);
+InserePacoteFinal(lista,&pacote);// adicionamos cada pacote individual na celula 
           
 
     // Aqui você faz o que quiser com o pacote
