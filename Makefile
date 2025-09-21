@@ -1,34 +1,36 @@
 # Define o compilador
 CC = gcc
 
-# Define as opções de compilação:
-# -Wall: Habilita todos os avisos (warnings)
-# -g: Inclui informações para o depurador (debugger)
-CFLAGS = -Wall -g
+# Opções de compilação:
+# -Wall: Habilita todos os avisos
+# -g: Inclui informações para o depurador
+# -I: Adiciona o diretório TADS para que o compilador encontre os arquivos .h
+CFLAGS = -Wall -g -I./TADS
 
-# Define o nome do arquivo executável
+# Nome do executável
 EXECUTABLE = programa
 
-# Define os arquivos de código-fonte
-# Adicionado o Tad_Drone.c à lista
-SOURCES = main.c dados_pacote.c lista_de_pacotes.c galpao.c Tad_Drone.c
+# Define os diretórios de origem e destino
+SRC_DIR = ./funcoes
+OBJ_DIR = ./processoas
 
-# Cria automaticamente os nomes dos arquivos objeto (.o) a partir dos arquivos .c
-OBJECTS = $(SOURCES:.c=.o)
+# Encontra automaticamente todos os arquivos .c na pasta 'funcoes'
+SOURCES = $(wildcard $(SRC_DIR)/*.c)
 
-# Regra principal: constrói o executável a partir dos arquivos objeto
+# Cria os nomes dos arquivos objeto na pasta de destino
+OBJECTS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SOURCES))
+
+# Regra principal para compilar e linkar
 all: $(EXECUTABLE)
 
 # Regra para linkar os arquivos objeto e criar o executável
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-# Regra para compilar cada arquivo .c em .o
-# A variável $< representa o nome do arquivo .c
-# A variável $@ representa o nome do arquivo .o
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
+# Regra genérica para compilar qualquer arquivo .c da pasta 'funcoes'
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Limpar os arquivos gerados (arquivos objeto e executável)
+# Limpa os arquivos gerados
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE)
+	rm -f $(OBJ_DIR)/*.o $(EXECUTABLE)

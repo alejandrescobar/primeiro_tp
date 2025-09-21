@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "lista_de_pacotes.h"
-#include "dados_pacote.h"
+#include "../TADS/lista_de_pacotes.h"
+#include "../TADS/dados_pacote.h"
 #include <stdlib.h>
 #define max_linha 256
-#include "galpao.h"
-#include "Tad_Drone.h"
+#include "../TADS/galpao.h"
+#include "../TADS/Tad_Drone.h"
 #include <math.h>
 
 
@@ -49,7 +49,7 @@ int VG = 0;
 listaPacotes lista;
 CrialistaVazia(&lista);
 
-int *pesomax = (int*) malloc(sizeof(int));
+float *pesomax = (float*) malloc(sizeof(float));
 carregar_arquivos(&lista,"teste2.txt", pesomax);
 
 

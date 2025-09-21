@@ -1,4 +1,4 @@
-#include "galpao.h"
+#include "../TADS/galpao.h"
 #include <stdio.h>
 #include <stdlib.h>
 

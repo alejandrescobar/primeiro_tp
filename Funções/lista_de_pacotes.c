@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista_de_pacotes.h"
+#include "../TADS/lista_de_pacotes.h"
 #include "string.h" 
 
 
