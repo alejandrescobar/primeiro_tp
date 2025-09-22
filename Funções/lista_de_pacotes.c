@@ -62,8 +62,8 @@ for (int i = 0; i < numPacotes; i++) {// laço de repetição para armazenar a q
     fscanf(arquivo, "%s %s %f %f",
           pacote.conteudo,
           pacote.destinatario,
-          &pacote.distancia,
-          &pacote.peso);
+          &pacote.peso,
+          &pacote.distancia);
 
 InserePacoteFinal(lista,&pacote);// adicionamos cada pacote individual na celula 
           
