@@ -61,7 +61,7 @@ for (int i = 0; i < numPacotes; i++) {// laço de repetição para armazenar a q
     dadospacote pacote;
     fscanf(arquivo, "%s %s %f %f",
           pacote.conteudo,
-          pacote.destinatario,
+          pacote.destinatario, 
           &pacote.peso,
           &pacote.distancia);
 
