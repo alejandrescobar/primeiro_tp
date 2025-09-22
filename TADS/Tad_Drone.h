@@ -13,7 +13,7 @@ typedef struct {
 
 
 
-void InicializaDrone(Drone* drone, int peso_max);
+void InicializaDrone(Drone* drone, float peso_max);
 void CarregarPacote(Drone *drone, dadospacote* pacote);
 void realizarEntrega(Drone *drone);
 void imprimeDrone(Drone *drone);
