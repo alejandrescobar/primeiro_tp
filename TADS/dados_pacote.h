@@ -9,7 +9,7 @@ typedef struct
     char destinatario [50];
     float peso;
     float distancia;
-
+    int prioridade;
     
 }dadospacote;
 
