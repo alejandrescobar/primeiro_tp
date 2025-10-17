@@ -57,9 +57,60 @@ listaPacotes lista;
 CrialistaVazia(&lista); // Uso a função para incializar uma lista vazia
 
 // Passa o peso máximo que vou obter na função carregar_arquivo
+
+
+
+int escolha ;
+printf("voce deseja usar entrada via terminal");
+printf("1-terminal");
+printf("2-arquivo");
+scanf("%d",&escolha);
 float *pesomax = (float*) malloc(sizeof(float));
-carregar_arquivos(&lista,"teste2.txt", pesomax);
-// Inicializa o galpão
+if (escolha==1)
+{   dadospacote pacote;
+    int numero_pacote;
+    float peso_max;
+    printf("difite o numero de pacotes");
+    scanf("%d",&numero_pacote);
+
+    printf("Peso MAXIMO do drone (float): ");
+         scanf("%f", &peso_max);
+    for (int i = 0; i < numero_pacote; i++) {
+            char conteudo_input[50];
+            char destinatario_input[50];
+            
+           
+
+            printf("Peso (float): ");
+            scanf("%f", &pacote.peso);
+
+            printf("Distancia (float): ");
+            scanf("%f", &pacote.distancia);
+
+            printf("Prioridade (int): ");
+            scanf("%d", &pacote.prioridade);
+            
+            
+            printf("Conteudo: ");
+            scanf("%49s", conteudo_input);
+            strcpy(pacote.conteudo, conteudo_input);
+
+            printf("Destinatario: ");
+            scanf("%49s", destinatario_input);
+            strcpy(pacote.destinatario, destinatario_input);
+
+            InserePacoteFinal(&lista, &pacote);
+        }
+        
+    }
+
+
+else {
+        // ENTRADA VIA ARQUIVO
+        
+        printf("\n--- Carregando Pacotes do Arquivo teste2.txt ---\n");
+        carregar_arquivos(&lista, "teste2.txt", pesomax); 
+    }
 Galpao gal;
 inicializar_galpao(&gal);
 // Usa a função para receber os pacotes, passando a lista de pacotes carregadas nos arquivos para o galpão de entregas do dia
