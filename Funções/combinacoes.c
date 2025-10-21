@@ -1,4 +1,5 @@
 #include "combinacoes.h"
+#include "lista_de_pacotes.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -58,12 +59,12 @@ combinacao* obter_combinacoes() {
 int melhor_combinacao(int peso_max)
 {
     
-    int melhor_indice=-1;
+    int melhor_indice=-0;
     int maior_prioridade=0;
 
     for (int i=0;i<total_combinacoes;i++)
     {
-        if(vetor_combinacoes[i].peso_combinacao<peso_max)
+        if(vetor_combinacoes[i].peso_combinacao<peso_max && vetor_combinacoes[i].usada != 1)
         {   
             if (vetor_combinacoes[i].soma_prioridade>maior_prioridade)
             {
@@ -74,4 +75,21 @@ int melhor_combinacao(int peso_max)
 
     }
         return melhor_indice;
+
+}
+
+
+listaPacotes organiza(combinacao* vetor_combinacoes, int total_combinacoes, int peso_max){
+    listaPacotes lista;
+    CrialistaVazia(&lista);
+    for(int i = 0; i < total_combinacoes; i++){
+        int temp = melhor_combinacao(peso_max);
+        int temp2 = vetor_combinacoes[temp].tamanho;
+        for(int i = 0; i < temp2; i++){
+            if(vetor_combinacoes[temp].lista[i]->entregue != 1){
+                vetor_combinacoes[temp].lista[i]->entregue = 1;
+                lista.primeiro->prox->pacote = *(vetor_combinacoes[temp].lista[i]);
+        }
+    }
+    return lista;
 }
