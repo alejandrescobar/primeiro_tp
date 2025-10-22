@@ -59,18 +59,20 @@ combinacao* obter_combinacoes() {
 int melhor_combinacao(int peso_max)
 {
     
-    int melhor_indice=-0;
-    int maior_prioridade=0;
+    int melhor_indice=-1;
+    int maior_prioridade=-1;
 
     for (int i=0;i<total_combinacoes;i++)
     {
         if(vetor_combinacoes[i].peso_combinacao<peso_max && vetor_combinacoes[i].usada != 1)
         {   
+           
             for (int j = 0 ; j<vetor_combinacoes->tamanho;j ++)
             {
-                if (vetor_combinacoes[j].entrega==1 )
+                if (vetor_combinacoes[i].lista[j]->entregue==1 )
                 {   
                     
+                    break;
                 }
             }
             if (vetor_combinacoes[i].soma_prioridade>maior_prioridade)

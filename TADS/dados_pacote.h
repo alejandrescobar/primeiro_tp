@@ -10,7 +10,7 @@ typedef struct
     float peso;
     float distancia;
     int prioridade;
-    
+    int entregue;
 }dadospacote;
 
 
