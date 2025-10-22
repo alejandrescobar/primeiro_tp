@@ -1,6 +1,6 @@
 #define MAX_PACOTES 50
 #include "dados_pacote.h"
-
+#include "galpao.h"
 
 
 typedef struct {
@@ -16,3 +16,4 @@ void gerar_combinacoes(dadospacote* pacotes[], int n, int k, int inicio, int ind
 void inicializar_combinacoes();
 combinacao* obter_combinacoes();
 int achar_combinacao();
+void enviar_galpao(combinacao* vetor_combinacoes ,Galpao* galpao, dadospacote* combinacao[], int peso_max);

@@ -1,5 +1,6 @@
 #include "combinacoes.h"
 #include "lista_de_pacotes.h"
+#include "galpao.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -88,17 +89,15 @@ int melhor_combinacao(int peso_max)
 }
 
 
-listaPacotes organiza(combinacao* vetor_combinacoes, int total_combinacoes, int peso_max){
-    listaPacotes lista;
-    CrialistaVazia(&lista);
-    for(int i = 0; i < total_combinacoes; i++){
-        int temp = melhor_combinacao(peso_max);
-        int temp2 = vetor_combinacoes[temp].tamanho;
-        for(int i = 0; i < temp2; i++){
-            if(vetor_combinacoes[temp].lista[i]->entregue != 1){
-                vetor_combinacoes[temp].lista[i]->entregue = 1;
-                lista.primeiro->prox->pacote = *(vetor_combinacoes[temp].lista[i]);
+void enviar_galpao(combinacao* vetor_combinacoes,Galpao* galpao, dadospacote* pacotes[], int peso_max){
+    int temp = melhor_combinacao(peso_max);
+    int tam_combinacao = vetor_combinacoes[temp].tamanho;
+    while(galpao->itens_galpao < tam_combinacao){
+        vetor_combinacoes[temp].usada = 1;
+        for(int i=0; i < vetor_combinacoes[temp].tamanho; i++){
+            vetor_combinacoes[temp].lista[i]->entregue = 1;
+            InserePacoteFinal(galpao,vetor_combinacoes[temp].lista[i]);
         }
+        galpao->itens_galpao += tam_combinacao;
     }
-    return lista;
 }

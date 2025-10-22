@@ -4,6 +4,7 @@
 #include "combinacoes.h"
 typedef struct{
     listaPacotes pacotesDia;
+    int itens_galpao;
 }Galpao;
 
 
