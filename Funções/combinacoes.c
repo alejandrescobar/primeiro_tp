@@ -2,6 +2,7 @@
 #include "lista_de_pacotes.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <galpao.h>
 
 combinacao vetor_combinacoes[10000];
 int total_combinacoes = 0;
@@ -91,5 +92,15 @@ int melhor_combinacao(int peso_max)
         return melhor_indice;
 
 }
-
+void enviar_galpao(combinacao* vetor_combinacoes,Galpao* galpao, dadospacote* pacotes[], int peso_max){
+    int temp = melhor_combinacao(peso_max);
+    int tam_combinacao = vetor_combinacoes[temp].tamanho;
+    while(galpao->itens_galpao < tam_combinacao){
+        vetor_combinacoes[temp].usada = 1;
+        for(int i=0; i < vetor_combinacoes[temp].tamanho; i++){
+            vetor_combinacoes[temp].lista[i]->entregue = 1;
+            InserePacoteFinal(galpao,vetor_combinacoes[temp].lista[i]);
+        }
+        galpao->itens_galpao += tam_combinacao;
+    }
 
