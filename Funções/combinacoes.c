@@ -1,6 +1,5 @@
 #include "combinacoes.h"
 #include "lista_de_pacotes.h"
-#include "galpao.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -65,20 +64,25 @@ int melhor_combinacao(int peso_max)
 
     for (int i=0;i<total_combinacoes;i++)
     {
-        if(vetor_combinacoes[i].peso_combinacao<peso_max && vetor_combinacoes[i].usada != 1)
+        combinacao *aux = &vetor_combinacoes[i];
+        if(aux->peso_combinacao<=peso_max && aux->usada !=1)
         {   
-           
-            for (int j = 0 ; j<vetor_combinacoes->tamanho;j ++)
+           int pacote_entregue;
+            for (int j = 0 ; j <aux->tamanho;j ++)
             {
-                if (vetor_combinacoes[i].lista[j]->entregue==1 )
+                if (aux->lista[j]->entregue==1)
                 {   
-                    
-                    break;
+                    pacote_entregue=1;
+                    break;//sai desse j e verifica o prox
                 }
+             if(pacote_entregue==1)
+             {  
+                    continue;
+             }   
             }
-            if (vetor_combinacoes[i].soma_prioridade>maior_prioridade)
+            if (aux->soma_prioridade>maior_prioridade)
             {
-                maior_prioridade=vetor_combinacoes->soma_prioridade;
+                maior_prioridade=vetor_combinacoes[i].soma_prioridade;
                 melhor_indice = i;
             }
         }
@@ -89,15 +93,3 @@ int melhor_combinacao(int peso_max)
 }
 
 
-void enviar_galpao(combinacao* vetor_combinacoes,Galpao* galpao, dadospacote* pacotes[], int peso_max){
-    int temp = melhor_combinacao(peso_max);
-    int tam_combinacao = vetor_combinacoes[temp].tamanho;
-    while(galpao->itens_galpao < tam_combinacao){
-        vetor_combinacoes[temp].usada = 1;
-        for(int i=0; i < vetor_combinacoes[temp].tamanho; i++){
-            vetor_combinacoes[temp].lista[i]->entregue = 1;
-            InserePacoteFinal(galpao,vetor_combinacoes[temp].lista[i]);
-        }
-        galpao->itens_galpao += tam_combinacao;
-    }
-}
