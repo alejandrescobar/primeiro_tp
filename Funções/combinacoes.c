@@ -66,6 +66,13 @@ int melhor_combinacao(int peso_max)
     {
         if(vetor_combinacoes[i].peso_combinacao<peso_max && vetor_combinacoes[i].usada != 1)
         {   
+            for (int j = 0 ; j<vetor_combinacoes->tamanho;j ++)
+            {
+                if (vetor_combinacoes[j].entrega==1 )
+                {   
+                    
+                }
+            }
             if (vetor_combinacoes[i].soma_prioridade>maior_prioridade)
             {
                 maior_prioridade=vetor_combinacoes->soma_prioridade;

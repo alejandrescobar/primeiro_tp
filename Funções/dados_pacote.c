@@ -6,6 +6,7 @@ void inicializa_pacote(dadospacote *dados,char *conteudo, char *destinatario,flo
 {
     strcpy(dados->conteudo, conteudo);// comecamos a preencher o conteudo com seus respectivos dados 
     strcpy(dados->destinatario,destinatario);
+    
     dados->peso = peso;
     dados->distancia = distancia;
 }

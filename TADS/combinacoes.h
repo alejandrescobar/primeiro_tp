@@ -9,7 +9,7 @@ typedef struct {
     int usada;       // quantos pacotes nessa combinação
     int soma_prioridade; // soma das prioridades
     int peso_combinacao;
-
+    
 } combinacao;
 
 void gerar_combinacoes(dadospacote* pacotes[], int n, int k, int inicio, int indice, float peso_max);
