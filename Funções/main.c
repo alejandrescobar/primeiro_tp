@@ -1,11 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 #include "../TADS/lista_de_pacotes.h"
 #include "../TADS/dados_pacote.h"
-#include <stdlib.h>
-#define max_linha 256
+#include "../TADS/combinacoes.h"
 #include "../TADS/galpao.h"
 #include "../TADS/Tad_Drone.h"
-#include <math.h>
+#define max_linha 256
+
+
+dadospacote *gerarVetorDePacotes(listaPacotes* lista, int numPacotes){
+    dadospacote* pacotes = (dadospacote*) malloc (sizeof(dadospacote)*numPacotes);
+    int count = 0;
+    Celula* aux = lista->primeiro;
+    while (aux->prox != NULL)
+    {
+        pacotes[count] = aux->prox->pacote;
+        aux = aux->prox;
+        count++;
+    }
+    return pacotes;
+    
+}
 
 
 // Define aqui a função para calcular a distancia de cada viagem feita pelo drone
@@ -58,7 +75,7 @@ CrialistaVazia(&lista); // Uso a função para incializar uma lista vazia
 
 // Passa o peso máximo que vou obter na função carregar_arquivo
 
-
+int numero_pacote;
 
 int escolha ;
 printf("voce deseja usar entrada via terminal");
@@ -68,13 +85,11 @@ scanf("%d",&escolha);
 float *pesomax = (float*) malloc(sizeof(float));
 if (escolha==1)
 {   dadospacote pacote;
-    int numero_pacote;
-    float peso_max;
     printf("difite o numero de pacotes");
     scanf("%d",&numero_pacote);
 
     printf("Peso MAXIMO do drone (float): ");
-         scanf("%f", &peso_max);
+         scanf("%f", pesomax);
     for (int i = 0; i < numero_pacote; i++) {
             char conteudo_input[50];
             char destinatario_input[50];
@@ -108,13 +123,22 @@ if (escolha==1)
 else {
         // ENTRADA VIA ARQUIVO
         
-        printf("\n--- Carregando Pacotes do Arquivo teste2.txt ---\n");
-        carregar_arquivos(&lista, "teste2.txt", pesomax); 
+        printf("\n--- Carregando Pacotes do Arquivo teste1.txt ---\n");
+        numero_pacote = carregar_arquivos(&lista, "teste1.txt", pesomax); 
     }
 Galpao gal;
 inicializar_galpao(&gal);
-// Usa a função para receber os pacotes, passando a lista de pacotes carregadas nos arquivos para o galpão de entregas do dia
-receber_pacotes(&gal, &lista);
+
+//Processo de criação das combinações e analise para achar o melhor conjunto de combinação com maior prioridade:
+dadospacote* pacotesList = gerarVetorDePacotes(&lista, numero_pacote);
+inicializar_combinacoes();
+gerar_todas_combinacoes(pacotesList, numero_pacote, pesomax);
+combinacao* vetorCombinacoes = obter_combinacoes();
+
+
+//Enviar pacotes do conjunto com mais prioridade para o galpão:
+enviar_galpao(vetorCombinacoes, &gal, pesomax);
+
 
 
 // Inicializa o drone
@@ -180,5 +204,6 @@ if(pacotesRemovidos.primeiro->prox != NULL){
 
 // Libera memória da variável alocada para o peso máximo
 free(pesomax);
+free(pacotesList);
  return 1 ;
 }

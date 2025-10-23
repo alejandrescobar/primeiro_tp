@@ -51,7 +51,7 @@ void ImprimeLista(listaPacotes *lista){
 
 }
 
-void carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo, float *pmax){   //os parametros vai receber um pontrito da lista , o nome do arquivo , em formato de ponteiro para podermos acessar , e um outro para armazenar o peso maximo 
+int carregar_arquivos(listaPacotes* lista , const char *nome_do_arquivo, float *pmax){   //os parametros vai receber um pontrito da lista , o nome do arquivo , em formato de ponteiro para podermos acessar , e um outro para armazenar o peso maximo 
    FILE *arquivo = fopen(nome_do_arquivo, "r");// estrutura padrão para ler arquivo apenas ler 
 int numPacotes;// declaramos uma variavel para armazenar no numero de pacotes para ser base posteriormente no nosso laço de repetição 
 fscanf(arquivo, "%f", pmax);// armazenamos o conteudo da primeira linha dentro da variavel pmax
@@ -59,16 +59,20 @@ fscanf(arquivo, "%d", &numPacotes);// armazenamos o valor da segunda linha para 
 
 for (int i = 0; i < numPacotes; i++) {// laço de repetição para armazenar a quantidade de pacotes em cada dado respectivo no pacote 
     dadospacote pacote;
-    fscanf(arquivo, "%s %s %f %f",
+    fscanf(arquivo, "%s %s %f %f %d",
           pacote.conteudo,
           pacote.destinatario, 
           &pacote.peso,
-          &pacote.distancia);
+          &pacote.distancia,
+          &pacote.prioridade);
 
-InserePacoteFinal(lista,&pacote);// adicionamos cada pacote individual na celula 
+    InserePacoteFinal(lista,&pacote);// adicionamos cada pacote individual na celula 
           
 
     // Aqui você faz o que quiser com o pacote
 }
     fclose(arquivo);
+
+    return numPacotes;
+
 }

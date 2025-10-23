@@ -1,7 +1,6 @@
 #ifndef GALPAO_H
 #define GALPAO_H
 #include "lista_de_pacotes.h"
-#include "combinacoes.h"
 typedef struct{
     listaPacotes pacotesDia;
     int itens_galpao;

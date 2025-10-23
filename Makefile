@@ -13,7 +13,7 @@ TADS_DIR = TADS
 SRCS = $(SRC_DIR)/dados_pacote.c $(SRC_DIR)/galpao.c $(SRC_DIR)/lista_de_pacotes.c $(SRC_DIR)/main.c $(SRC_DIR)/Tad_Drone.c
 
 # Arquivos objeto
-OBJS = $(OBJ_DIR)/dados_pacote.o $(OBJ_DIR)/galpao.o $(OBJ_DIR)/lista_de_pacotes.o $(OBJ_DIR)/main.o $(OBJ_DIR)/Tad_Drone.o
+OBJS = $(OBJ_DIR)/dados_pacote.o $(OBJ_DIR)/galpao.o $(OBJ_DIR)/lista_de_pacotes.o $(OBJ_DIR)/main.o $(OBJ_DIR)/Tad_Drone.o $(OBJ_DIR)/combinacoes.o
 
 # Nome do executável
 TARGET = programa
@@ -40,6 +40,9 @@ $(OBJ_DIR)/main.o: $(SRC_DIR)/main.c
 
 $(OBJ_DIR)/Tad_Drone.o: $(SRC_DIR)/Tad_Drone.c $(TADS_DIR)/Tad_Drone.h
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/Tad_Drone.c -o $(OBJ_DIR)/Tad_Drone.o
+
+$(OBJ_DIR)/combinacoes.o: $(SRC_DIR)/combinacoes.c $(TADS_DIR)/combinacoes.h
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/combinacoes.c -o $(OBJ_DIR)/combinacoes.o
 
 # Regra para limpar os arquivos compilados
 clean:

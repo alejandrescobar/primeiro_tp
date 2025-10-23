@@ -12,9 +12,10 @@ typedef struct {
     
 } combinacao;
 
-void gerar_combinacoes(dadospacote* pacotes[], int n, int k, int inicio, int indice, float peso_max);
+void gerar_combinacoes(dadospacote* pacotes, int n, int k, int inicio, int indice, float* peso_max);
+void gerar_todas_combinacoes(dadospacote* pacotes, int n, float* peso_max);
 void inicializar_combinacoes();
 combinacao* obter_combinacoes();
 int achar_combinacao();
-void enviar_galpao(combinacao* vetor_combinacoes ,Galpao* galpao, dadospacote* combinacao[], int peso_max);
+void enviar_galpao(combinacao* vetor_combinacoes ,Galpao* galpao, float* peso_max);
 
