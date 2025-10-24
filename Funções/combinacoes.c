@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "../TADS/galpao.h"
 
-combinacao vetor_combinacoes[10000];
+combinacao vetor_combinacoes[100000];
 int total_combinacoes = 0;
 
 // Vetor temporario usado na recursao

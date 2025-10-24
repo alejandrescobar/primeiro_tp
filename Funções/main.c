@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <math.h>
 #include "../TADS/lista_de_pacotes.h"
 #include "../TADS/dados_pacote.h"
@@ -124,8 +125,12 @@ else {
         // ENTRADA VIA ARQUIVO
         
         printf("\n--- Carregando Pacotes do Arquivo teste1.txt ---\n");
-        numero_pacote = carregar_arquivos(&lista, "teste1.txt", pesomax); 
+        numero_pacote = carregar_arquivos(&lista, "teste4.txt", pesomax); 
     }
+
+clock_t tempoInicio, tempoFinal;
+double tempoTotal;
+tempoInicio = clock();
 Galpao gal;
 inicializar_galpao(&gal);
 
@@ -205,5 +210,8 @@ if(pacotesRemovidos.primeiro->prox != NULL){
 // Libera memória da variável alocada para o peso máximo
 free(pesomax);
 free(pacotesList);
+tempoFinal = clock();
+tempoTotal = (double)(tempoFinal - tempoInicio)/CLOCKS_PER_SEC;
+printf("\n%lf", tempoTotal);
  return 1 ;
 }
