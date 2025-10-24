@@ -95,15 +95,37 @@ int melhor_combinacao(float* peso_max)
 
 }
 void enviar_galpao(combinacao* vetor_combinacoes,Galpao* galpao, float* peso_max){
-    int temp = melhor_combinacao(peso_max);
-    int tam_combinacao = vetor_combinacoes[temp].tamanho;
-    while(galpao->itens_galpao < tam_combinacao){
-        vetor_combinacoes[temp].usada = 1;
-        for(int i=0; i < vetor_combinacoes[temp].tamanho; i++){
-            vetor_combinacoes[temp].lista[i]->entregue = 1;
-            InserePacoteFinal(&galpao->pacotesDia,vetor_combinacoes[temp].lista[i]);
+    while(1){ // Loop infinito para buscar todas as combinações possíveis
+        int temp = melhor_combinacao(peso_max);
+        
+        // CORREÇÃO ESSENCIAL 1 (Ponto 2 de SegFault)
+        if (temp == -1) {
+            // Nenhuma combinação válida restante. Sai do loop.
+            printf("\nBusca por combinacoes concluida.\n"); 
+            break; 
         }
+
+        // Se chegamos aqui, 'temp' é um índice válido (>= 0)
+        combinacao *melhor_c = &vetor_combinacoes[temp];
+        
+        // 2. Marcar e mover pacotes:
+        melhor_c->usada = 1; // Marca a combinação como usada
+        
+        int tam_combinacao = melhor_c->tamanho;
+        
+        for(int i = 0; i < tam_combinacao; i++){
+            // 3. Marcar o pacote como entregue E mover para o galpão
+            melhor_c->lista[i]->entregue = 1; 
+            InserePacoteFinal(&galpao->pacotesDia, melhor_c->lista[i]);
+            
+            // O pacote já foi marcado como 'entregue' (1), o que é importante
+            // para que 'melhor_combinacao' não o inclua em futuras combinações.
+        }
+        
+        // 4. Atualiza o contador do galpão
         galpao->itens_galpao += tam_combinacao;
+        
+        // O loop continua, buscando a próxima melhor combinação não usada.
     }
 
 }

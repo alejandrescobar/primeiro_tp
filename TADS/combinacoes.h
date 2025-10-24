@@ -8,7 +8,7 @@ typedef struct {
     int tamanho; 
     int usada;       // quantos pacotes nessa combinação
     int soma_prioridade; // soma das prioridades
-    int peso_combinacao;
+    float peso_combinacao;
     
 } combinacao;
 
