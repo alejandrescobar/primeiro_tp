@@ -19,7 +19,7 @@ void CrialistaVazia(listaPacotes* lista);
 void InserePacoteFinal(listaPacotes* lista, dadospacote* pacote);
 int RemovePacoteInicio( listaPacotes* lista, dadospacote *pacote);
 void ImprimeLista(listaPacotes *lista);
-
+void verificarListaVazia(listaPacotes* lista);
 int carregar_arquivos(listaPacotes* lista,const char *nome_arquivo, float *pmax );
 
 #endif 

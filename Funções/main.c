@@ -78,14 +78,14 @@ CrialistaVazia(&lista); // Uso a função para incializar uma lista vazia
 int numero_pacote;
 
 int escolha ;
-printf("voce deseja usar entrada via terminal");
-printf("1-terminal");
+printf("Você deseja usar entrada via:\n ");
+printf("1-terminal\n ");
 printf("2-arquivo");
 scanf("%d",&escolha);
 float *pesomax = (float*) malloc(sizeof(float));
 if (escolha==1)
 {   dadospacote pacote;
-    printf("difite o numero de pacotes");
+    printf("Digite o numero de pacotes: ");
     scanf("%d",&numero_pacote);
 
     printf("Peso MAXIMO do drone (float): ");
@@ -139,7 +139,7 @@ combinacao* vetorCombinacoes = obter_combinacoes();
 //Enviar pacotes do conjunto com mais prioridade para o galpão:
 enviar_galpao(vetorCombinacoes, &gal, pesomax);
 
-
+verificarListaVazia(&gal.pacotesDia);
 
 // Inicializa o drone
 Drone dronadas;

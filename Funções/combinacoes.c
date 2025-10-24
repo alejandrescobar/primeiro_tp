@@ -91,7 +91,6 @@ int melhor_combinacao(float* peso_max)
         }
 
     }
-        printf("%d", melhor_indice);
         return melhor_indice;
 
 }

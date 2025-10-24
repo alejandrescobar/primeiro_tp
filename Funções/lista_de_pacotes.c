@@ -76,3 +76,11 @@ for (int i = 0; i < numPacotes; i++) {// laço de repetição para armazenar a q
     return numPacotes;
 
 }
+
+void verificarListaVazia(listaPacotes* lista){
+    if (lista->primeiro == NULL && lista->ultimo == NULL){
+        printf("Lista vazia");
+    } else {
+        printf("Tem pacote no galpão");
+    }
+}

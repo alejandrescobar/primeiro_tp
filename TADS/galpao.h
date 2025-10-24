@@ -8,7 +8,6 @@ typedef struct{
 
 
 void inicializar_galpao(Galpao* galpao);
-
 void receber_pacotes(Galpao* galpao, listaPacotes* lista);
 dadospacote* carregar_drone(Galpao* galpao);
 void imprimir_pacotesDoDia(Galpao* galpao);
