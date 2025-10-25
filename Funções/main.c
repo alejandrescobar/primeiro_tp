@@ -80,16 +80,16 @@ int numero_pacote;
 
 int escolha ;
 printf("Você deseja usar entrada via:\n ");
-printf("1-terminal\n ");
-printf("2-arquivo");
+printf("1-terminal: \n ");
+printf("2-arquivo: ");
 scanf("%d",&escolha);
 float *pesomax = (float*) malloc(sizeof(float));
 if (escolha==1)
 {   dadospacote pacote;
-    printf("Digite o numero de pacotes: ");
+    printf("Digite o numero de pacotes: \n");
     scanf("%d",&numero_pacote);
 
-    printf("Peso MAXIMO do drone (float): ");
+    printf("Peso MAXIMO do drone (float): \n");
          scanf("%f", pesomax);
     for (int i = 0; i < numero_pacote; i++) {
             char conteudo_input[50];
@@ -97,17 +97,17 @@ if (escolha==1)
             
            
 
-            printf("Peso (float): ");
+            printf("Peso (float): \n");
             scanf("%f", &pacote.peso);
 
-            printf("Distancia (float): ");
+            printf("Distancia (float): \n");
             scanf("%f", &pacote.distancia);
 
-            printf("Prioridade (int): ");
+            printf("Prioridade (int): \n");
             scanf("%d", &pacote.prioridade);
             
             
-            printf("Conteudo: ");
+            printf("Conteudo: \n");
             scanf("%49s", conteudo_input);
             strcpy(pacote.conteudo, conteudo_input);
 
@@ -125,7 +125,7 @@ else {
         // ENTRADA VIA ARQUIVO
         
         printf("\n--- Carregando Pacotes do Arquivo teste1.txt ---\n");
-        numero_pacote = carregar_arquivos(&lista, "teste4.txt", pesomax); 
+        numero_pacote = carregar_arquivos(&lista, "teste1.txt", pesomax); 
     }
 
 clock_t tempoInicio, tempoFinal;
@@ -144,7 +144,6 @@ combinacao* vetorCombinacoes = obter_combinacoes();
 //Enviar pacotes do conjunto com mais prioridade para o galpão:
 enviar_galpao(vetorCombinacoes, &gal, pesomax);
 
-verificarListaVazia(&gal.pacotesDia);
 
 // Inicializa o drone
 Drone dronadas;
